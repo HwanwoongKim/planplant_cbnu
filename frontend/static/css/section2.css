@@ -1,0 +1,203 @@
+/* styles.css */
+.login-welcome p,.login-message p {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.login-container {
+    position: relative;
+    right: 0;
+    margin: 10px;
+    text-align: right;
+}
+
+.categories-container {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.categories-slider {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.plants-container {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.plants-slider {
+    height: 100px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.category {
+    height: 160px;
+    overflow-y: auto; /* 세로 스크롤을 추가합니다. */
+    width: 250px;
+    display: inline-block;
+    margin-right: 20px; /* 각 카테고리 사이의 간격 조절 */
+    border-radius: 10px; /* 둥근 테두리 추가 */
+    background-color: #f0f0f0; /* 카테고리 배경색 */
+    box-shadow: 0 4px 1px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    padding: 20px; /* 내부 여백 추가 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    transition: transform 0.3s; /* 호버 시 애니메이션 효과 추가 */
+}
+
+.category h2 {
+    font-size: 1.2em; /* 카테고리 제목 폰트 크기 */
+    position: relative;
+    top: -20px
+}
+
+.plant {
+    width: 95px;
+    height: 95px;
+    display: inline-block;
+    margin-right: 20px; /* 각 카테고리 사이의 간격 조절 */
+    border-radius: 50px; /* 둥근 테두리 추가 */
+    background-color: #aaa; /* 카테고리 배경색 */
+    box-shadow: 0 4px 1px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    /* padding: 20px; */ /* 내부 여백 제거 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    line-height: 95px; /* 텍스트를 수직 가운데 정렬 */
+    transition: transform 0.3s; /* 호버 시 애니메이션 효과 추가 */
+}
+
+.custom-button {
+    width: 50px; /* 너비를 원하는 크기로 설정 */
+    padding: 5px; /* 위쪽 여백 늘리기 */
+    background-color: #aaa;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative; /* 위치를 상대적으로 설정 */
+    top:-80px;
+    padding-top: 7px;
+    font-size: 20px; /* 텍스트 크기를 조절합니다. */
+}
+
+.custom-button:hover {
+    background-color: #aaa;
+}
+
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0);
+}
+
+/* 모달 내용의 스타일 */
+.modal-content {
+    position: absolute;
+    width: 100%; /* 화면 너비의 90%만큼 차지하도록 설정 */
+    height: 100%; /* 화면 높이의 90%만큼 차지하도록 설정 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    overflow: auto; /* 내용이 너무 클 때 스크롤 가능하도록 설정 */
+    box-sizing: border-box; /* padding과 border를 포함한 크기로 요소 크기를 계산합니다. */
+}
+
+/* 모달 닫기 버튼 스타일 */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.plant-button {
+    border-radius: 50%; /* 요소를 동그랗게 만듭니다. */
+    width: 80px; /* 버튼의 너비 설정 */
+    height: 80px; /* 버튼의 높이 설정 */
+    background-color: #aaa; /* 배경색 설정 */
+    color: #ffffff; /* 텍스트 색상 설정 */
+    border: none; /* 테두리 없애기 */
+    font-size: 16px; /* 폰트 크기 설정 */
+    cursor: pointer; /* 커서 모양 변경 */
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+}
+.section-line {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.section1 {
+    height: 100%;
+    padding: 0px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top:20px;
+    border: 0px solid #ccc;
+    width: 94%;
+    text-align: center;
+}
+
+.section2 {
+    height: 100%;
+    padding: 0px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top:10px;
+    border: 0px solid #ccc;
+    width: 94%;
+    text-align: center;
+
+}
+
+
+/* 큰 화면 (데스크탑) */
+@media (min-width: 1024px) {
+    .section {
+        max-width: 45%;
+    }
+}
+
+/* 중간 화면 (태블릿) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .section {
+        max-width: 45%;
+    }
+}
+
+/* 작은 화면 (모바일) */
+@media (max-width: 767px) {
+    
+
+}
+
+

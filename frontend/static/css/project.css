@@ -1,0 +1,134 @@
+/* 기본 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #fff;
+
+}
+.header h1 {
+    margin: 0;
+    color: #000;
+}
+
+.login-welcome p,.login-message p {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.login-container {
+    position: relative;
+    right: 0;
+    margin: 10px;
+    text-align: right;
+}
+
+.header-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.section-container {
+    display: flex;
+    flex-direction: column;
+}
+.section-line {
+    display: flex;
+    justify-content: center;
+    gap: 0px;
+}
+.section {
+    height: 250px;
+    border: 1px solid #ccc;
+    padding: 55px;
+    width: 100%;
+    border-radius: 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    top: 125px;
+    right: 28px;
+    z-index: 1;
+}
+.dropdown-menu a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333;
+}
+.dropdown-menu a:hover {
+    background-color: #f4f4f4;
+}
+.show {
+    display: block;
+}
+
+#capture-btn {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f0f0f0;
+    color: black;
+    text-align: center;
+}
+
+footer p {
+    margin-left: -75px;
+}
+
+/* 큰 화면 (데스크탑) */
+@media (min-width: 1024px) {
+    .section {
+        max-width: 45%;
+    }
+}
+
+/* 중간 화면 (태블릿) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .section {
+        max-width: 45%;
+    }
+}
+
+/* 작은 화면 (모바일) */
+@media (max-width: 767px) {
+    
+
+}

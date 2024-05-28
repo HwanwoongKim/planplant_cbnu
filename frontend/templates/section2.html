@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLAN PLANT</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/project.css') }}">    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/calender.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/section2.css') }}">
+    <link rel="stylesheet" href="/frontend/static/css/project.css">
+    <link rel="stylesheet" href="/frontend/static/css/calender.css">
+    <link rel="stylesheet" href="/frontend/static/css/section2.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-welcome">
+            {% if 'username' in session %}
+                <p>안녕하세요, {{ session['username'] }}님!</p>
+            {% endif %}
+        </div>
+        <div class="login-message">
+            {% if 'username' not in session %}
+                <p>로그인이 필요합니다.</p>
+            {% endif %}
+        </div>
+    </div>
+    <header class="header">
+        <h1>PLAN PLANT</h1>
+        <button class="header-button" id="menu-button">menu</button>
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a href="/">main</a>
+            <a href="login">Login</a>
+            <a href="section1">Section 1</a>
+            <a href="section2">Section 2</a>
+            <a href="section3">Section 3</a>
+            {% if 'username' in session %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
+        </div>
+    </header>
+    <div class="main">
+        <div class="section-container">
+            <!-- 첫 번째 줄 -->
+            <div class="section-line">      
+                <div class="section1">
+                    <div class="categories-container">
+                        <div class="categories-slider"> 
+                            <div class="category">
+                                <h2 class="category-title">New Category</h2>
+                                <div class="plants-container">
+                                    <div class="plants-slider">
+                                        <button id="add-plant-btn" class="plant-button "onclick="addPlant(this)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="add-category-btn" class="custom-button">+</button>
+                        </div>     
+                    </div>
+                </div>
+            </div>
+            <!-- 두 번째 줄 -->
+            <div class="section-line">
+                <div class="section2">
+                    <div id="calender">
+                        <div id="cal-header">
+                            <input id="last" type="button" class="material-icons" value="navigate_before">
+                            <span id="caption"></span>
+                            <input id="next" type="button" class="material-icons" value="navigate_next">
+                            </div>         
+                        <div id="cal-content"></div>
+                    </div>
+                    <div id="myModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal()">&times;</span>
+                            <p id="plantInfo"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2024 캡스톤 디자인. 정보통신공학부</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='js/project.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/common.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/section2.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/calender.js') }}"></script>
+    <script src="/frontend/static/js/common.js"></script> 
+    <script src="/frontend/static/js/section2.js"></script> 
+    <script src="/frontend/static/js/calender.js"></script> 
+</body>
+</html>
+
+

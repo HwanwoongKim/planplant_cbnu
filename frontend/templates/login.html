@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/frontend/static/css/login.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">    
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+            <button id="register-btn" type="button">Register</button>
+        </form>
+        <a href="/">Go to main</a>
+    </div>
+
+    {% if 'success_message' in session %}
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="success-message">{{ session.pop('success_message') }}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if login_failed %}
+    <div id="loginFailedModal" class="modal" style="display: block;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="login-failed-message">Login failed. Please check your username and password.</p>
+        </div>
+    </div>
+    {% endif %}
+
+
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+    <script src="/frontend/static/js/login.js"></script>
+</body>
+</html>

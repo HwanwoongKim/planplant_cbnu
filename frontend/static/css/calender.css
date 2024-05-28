@@ -1,0 +1,73 @@
+#carlender caption{
+    color:red;
+    display: flex;
+}
+
+.gray-text{
+    color: gray;
+}
+
+#calender {
+  width:99%;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f7fa;
+  color: #333;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: -3px;
+}
+
+#cal-header{
+    background-color: #aaa;
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 50px;
+    border-radius: 5px;
+    margin-left: 0px;
+}
+
+#cal-header input[type="button"]
+{
+    font: 24px;
+    background: transparent;
+    border: none;
+    margin: 0 10px;
+    color:#f8f7fa;
+}
+
+#cal-header input[type="button"]:hover{
+    color:white;
+}
+
+#calender table {
+    margin: 5px;
+    padding:10px;
+    border: none;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#calender tr{   
+    border: none;
+}
+
+#calender td{
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    padding: 3px;
+    text-align: center;
+}
+
+#calender .week{
+    border: none;
+}
+
+#calender .today{
+    color:white;
+    border-radius: 10px;
+    background: #f8f7fa;
+}

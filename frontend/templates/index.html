@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLAN PLANT</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/project.css') }}">
+    <link rel="stylesheet" href="/frontend/static/css/project.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-welcome">
+            {% if 'username' in session %}
+                <p>안녕하세요, {{ session['username'] }}님!</p>
+            {% endif %}
+        </div>
+        <div class="login-message">
+            {% if 'username' not in session %}
+                <p>로그인이 필요합니다.</p>
+            {% endif %}
+        </div>
+    </div>
+    <header class="header">
+        <h1>PLAN PLANT</h1>
+        <button class="header-button" id="menu-button">menu</button>
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a href="/">main</a>
+            <a href="login">Login</a>
+            <a href="section1">식물 관리</a>
+            <a href="section2">식물 촬영</a>
+            <a href="section3">흙 촬영</a>
+            {% if 'username' in session %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
+        </div>
+    </header>
+    <div class="main">
+        <div class="section-container">
+            <!-- 첫 번째 줄 -->
+            <div class="section-line">      
+                <button class="section" id="section2">
+                    <h2>plant</h2>
+                    <p>imformation</p>
+                </button>
+            </div>
+            <!-- 두 번째 줄 -->
+            <div class="section-line">
+                <button class="section" id="section1">
+                    <h2>Picture</h2>
+                    <p>your plant</p>  
+                </button>   
+                <button class="section" id="section3">
+                    <h2>Picture</h2>
+                    <p>your soil</p>
+                </button>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2024 캡스톤 디자인. 정보통신공학부</p>
+        </footer>
+    </div>
+
+    <script>
+        var isLoggedIn = {{ 'true' if 'username' in session else 'false' }};
+    </script>
+    <script src="{{ url_for('static', filename='js/project.js') }}"></script>
+    <script src="/frontend/static/js/project.js"></script>
+    <script src="/frontend/static/js/common.js"></script>
+</body>
+</html>
