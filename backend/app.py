@@ -1,12 +1,15 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 from datetime import datetime
 
 app = Flask(__name__, template_folder='../frontend/templates', static_folder='../frontend/static')
 app.secret_key = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:qkrwjddhks1!@localhost/your_database_name' # MySQL 연결 정보
+
+app.config['UPLOAD_FOLDER'] = 'uploads'
 db = SQLAlchemy(app)
 
 # 메인 화면
@@ -30,9 +33,6 @@ def section2():
 def section3():
     return render_template('section3.html')
 
-@app.route('/section4')
-def section4():
-    return render_template('section4.html')   
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -95,33 +95,37 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('index'))  # 메인 페이지로 리다이렉트
 
-# 사진 다운로드
-@app.route('/capture-image', methods=['POST'])
-def capture_image():
+@app.route('/upload', methods=['POST'])
+def upload():
     try:
-        # 클라이언트로부터 이미지 데이터 받기
-        image_data = request.files['image']
+        image_data = request.files['file']
+        target_page = request.form.get("targetPage")
+        target_folder = ""
 
-        # 업로드 폴더 설정
-        upload_folder = 'uploads'
+        # Debugging log
+        app.logger.debug(f"Received targetPage: {target_page}")
 
-        # 폴더가 존재하지 않으면 생성
-        if not os.path.exists(upload_folder):
-            os.makedirs(upload_folder)
+        if target_page == "section1":
+            target_folder = "plant_images"
+        elif target_page == "section3":
+            target_folder = "soil_images"
 
-        # 현재 시간을 기반으로 고유한 파일 이름 생성
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S%f')  # 밀리초 단위까지 고려
-        filename = f'{timestamp}.png'
+        target_path = os.path.join(app.config['UPLOAD_FOLDER'], target_folder)
+        if not os.path.exists(target_path):
+            os.makedirs(target_path)
 
-        # 이미지 데이터를 파일로 저장
-        image_path = os.path.join(upload_folder, filename)
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S%f')
+        filename = secure_filename(f'{timestamp}.png')
+        image_path = os.path.join(target_path, filename)
         image_data.save(image_path)
 
-        # 성공적으로 이미지를 저장했음을 클라이언트에게 응답
-        return 'Image captured and saved successfully.', 200
+        session['image_filename'] = filename
+        session['message'] = "Image captured and saved successfully."
+        return jsonify({"message": "Image captured and saved successfully."}), 200
     except Exception as e:
-        return str(e), 500
-
+        session['message'] = f"Image upload failed: {str(e)}"
+        app.logger.error(f"Image upload failed: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+        
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=5000)
-

@@ -26,8 +26,8 @@
         <div class="dropdown-menu" id="dropdown-menu">
             <a href="/">main</a>
             <a href="login">Login</a>
-            <a href="section1">식물 관리</a>
-            <a href="section2">식물 촬영</a>
+            <a href="section1">식물 촬영</a>
+            <a href="section2">식물 관리</a>
             <a href="section3">흙 촬영</a>
             {% if 'username' in session %}
             <a href="{{ url_for('logout') }}">Logout</a>
@@ -45,11 +45,11 @@
             </div>
             <!-- 두 번째 줄 -->
             <div class="section-line">
-                <button class="section" id="section1">
+                <button class="section" id="camera-button1">
                     <h2>Picture</h2>
                     <p>your plant</p>  
                 </button>   
-                <button class="section" id="section3">
+                <button class="section" id="camera-button2">
                     <h2>Picture</h2>
                     <p>your soil</p>
                 </button>
@@ -58,8 +58,10 @@
         <footer>
             <p>&copy; 2024 캡스톤 디자인. 정보통신공학부</p>
         </footer>
+        <!-- 카메라 기능 -->
+        <input type="file" name="photoFilePlant" id="photoFilePlant" accept="image/*" capture="camera" style="display:none;">
+        <input type="file" name="photoFileSoil" id="photoFileSoil" accept="image/*" capture="camera" style="display:none;">
     </div>
-
     <script>
         var isLoggedIn = {{ 'true' if 'username' in session else 'false' }};
     </script>

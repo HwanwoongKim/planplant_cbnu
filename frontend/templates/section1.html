@@ -36,18 +36,10 @@
         </div>
     </header>
     <main>
-        <!-- 카메라 기능 -->
-        <img src="" id="photoImg" width="100px" height="100px" style="display:none;">
-        <input type="file" name="photoFile" id="photoFile" accept="image/*" capture="camera" style="display:none;">
-        <br>
-        <input type="button" value="카메라" id="camera-button">
-        <br>
-        <div id="result"></div>
-        <!-- 폼 추가 -->
-        <form id="uploadForm" action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data" style="display: none;">
-            <input type="file" name="file" id="fileInput">
-        </form>
-
+        <!-- 업로드 성공 여부 메시지 -->
+        {% if request.args.get('uploadSuccess') == 'true' %}
+            <p>이미지 업로드 성공!</p>
+        {% endif %}
         <footer>
             <p>&copy; 2024 캡스톤 디자인. 정보통신공학부</p>
         </footer>
