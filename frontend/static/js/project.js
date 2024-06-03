@@ -129,7 +129,7 @@ function uploadImageSoil(file) {
         }
     }).then(data => {
         console.log('Success:', data);
-        window.location.href = '/section3?uploadSuccess=true';
+        window.location.href = '/section3?uploadSuccess=true' + '&soilResult=' + soilResult;
     }).catch(error => {
         console.error('Error:', error);
         window.location.href = '/section3?uploadSuccess=false';
