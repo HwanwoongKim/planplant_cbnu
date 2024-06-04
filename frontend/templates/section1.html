@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>카메라 웹페이지</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/project.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dropdown.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/camera.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
@@ -22,20 +24,38 @@
             {% endif %}
         </div>
     </div>
-    <header class="header">
-        <h1>PLAN PLANT</h1>
-        <button class="header-button" id="menu-button">menu</button>
-        <div class="dropdown-menu" id="dropdown-menu">
-            <a href="/">main</a>
-            <a href="login">Login</a>
-            <a href="section2">식물 관리</a>
-            <a href="section3">흙 촬영</a>
-            {% if 'username' in session %}
-            <a href="{{ url_for('logout') }}">Logout</a>
-            {% endif %}
-        </div>
+    <header class="cd-header">
+        <div class="header-name"><h1>PLAN PLANT</h1></div>
+        <div class="header-wrapper">
+          <div class="nav-but-wrap">
+            <div class="menu-icon hover-target">
+              <span class="menu-icon__line menu-icon__line-left"></span>
+              <span class="menu-icon__line"></span>
+              <span class="menu-icon__line menu-icon__line-right"></span>
+            </div>          
+          </div>          
+        </div>        
     </header>
-    <main>
+    <div class="nav">
+        <div class="nav__content">
+            <ul class="nav__list">
+            <li class="nav__list-item active-nav"><a href="/" class="hover-target">Home</a></li>
+            <li class="nav__list-item"><a href="login" class="hover-target">Log in</a></li>
+            <li class="nav__list-item"><a href="section1" class="hover-target">Pic Plant</a></li>
+            <li class="nav__list-item"><a href="section2" class="hover-target">Plant Diary</a></li>
+            <li class="nav__list-item"><a href="section3" class="hover-target">Pic Soil</a></li>
+            <li class="nav__list-item">
+            {% if 'username' in session %}
+            <a href="{{ url_for('logout') }}" class="hover-target">Logout</a>
+            {% endif %}
+            </li>
+            </ul>
+        </div>
+    </div>    
+    <div class='cursor' id="cursor"></div>
+    <div class='cursor2' id="cursor2"></div>
+    <div class='cursor3' id="cursor3"></div>
+    <div class ="main">
         <!-- 업로드 성공 여부 메시지 -->
         {% if request.args.get('uploadSuccess') == 'true' %}
             <p>이미지 업로드 성공!</p>
@@ -43,9 +63,10 @@
         <footer>
             <p>&copy; 2024 캡스톤 디자인. 정보통신공학부</p>
         </footer>
-    </main>
+    </div>
+   
     <script src="{{ url_for('static', filename='js/project.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dropdown.js') }}"></script>
     <script src="{{ url_for('static', filename='js/plantcamera.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/common.js') }}"></script>
 </body>
 </html>

@@ -2,11 +2,7 @@
 document.getElementById("section2").addEventListener("click", function() {
     navigateToPage("section2"); // 섹션 2 클릭 시 페이지 이동 함수 호출
 });
-//드롭다운메뉴
-document.getElementById('menu-button').addEventListener('click', function() {
-    var menu = document.getElementById('dropdown-menu');
-    menu.classList.toggle('show');
-});
+
 //이벤트핸들러(로그인 여부에따라 section1, camera-button1사용 여부 체크)
 document.addEventListener("DOMContentLoaded", function() {
     var section2Button = document.getElementById("section2");

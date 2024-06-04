@@ -148,7 +148,6 @@ function addCategory() {
         selectPlantType(this);
     });
 }
-
 // 카테고리 선택 함수
 function selectPlantType(categoryTitle) {
     var plantType = prompt("Enter plant type:");
@@ -156,8 +155,6 @@ function selectPlantType(categoryTitle) {
         categoryTitle.textContent = plantType; // 선택한 식물 종류로 카테고리 제목 변경
     }
 }
-
-
 // 식물 추가 함수
 function addPlant(button) {
     var plantContainer = button.parentNode;
@@ -168,7 +165,5 @@ function addPlant(button) {
     showModal(); // 식물을 추가할 때 모달을 열도록 설정할 수 있습니다.
 }
 
-
-////////////////
 
 
