@@ -4,6 +4,10 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from datetime import datetime
+# Import Libraries for Soil Detection
+from SSM import ssm_web
+import numpy as np
+import cv2
 
 app = Flask(__name__, template_folder='../frontend/templates', static_folder='../frontend/static')
 app.secret_key = 'your_secret_key'
@@ -110,6 +114,21 @@ def upload():
         elif target_page == "section3":
             target_folder = "soil_images"
 
+            target_folder = "soil_images"
+            
+            soil = ssm_web.SSM()
+            image_np = np.frombuffer(image_data.read(), np.uint8)
+            image_cv = cv2.imdecode(image_np, cv2.IMREAD_UNCHANGED)
+            image_cv = cv2.cvtColor(image_cv, cv2.COLOR_BGRA2RGBA)
+            image_cv = cv2.resize(image_cv, (1024, 1024), interpolation=cv2.INTER_AREA)
+            image_cv = np.expand_dims(image_cv, axis=0)
+            soil.load_image(image_cv)
+            soil.predict()
+            soil.get_density()
+            soil.analyze_density()
+            soil.get_result()
+            soil_result = soil.result
+
         target_path = os.path.join(app.config['UPLOAD_FOLDER'], target_folder)
         if not os.path.exists(target_path):
             os.makedirs(target_path)
@@ -121,7 +140,7 @@ def upload():
 
         session['image_filename'] = filename
         session['message'] = "Image captured and saved successfully."
-        return jsonify({"message": "Image captured and saved successfully."}), 200
+        return jsonify({"message": "Image captured and saved successfully.", "soilResult": soil_result}), 200
     except Exception as e:
         session['message'] = f"Image upload failed: {str(e)}"
         app.logger.error(f"Image upload failed: {str(e)}")
