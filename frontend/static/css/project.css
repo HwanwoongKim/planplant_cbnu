@@ -24,8 +24,8 @@ body{
 }
 
 .header-name img {
-    height: 80px; /* 필요한 높이로 변경 */
-    width: 250px;
+    height: 70px; /* 필요한 높이로 변경 */
+    width: 220px;
     /* 추가 스타일링 */
 }
 
@@ -53,6 +53,7 @@ body{
 }
 
 .section-container {
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
 }
@@ -60,9 +61,10 @@ body{
     display: flex;
     justify-content: center;
     gap: 0px;
+
 }
 .section {
-    height: 250px;
+    height: 220px;
     border: 1px solid #ccc;
     padding: 55px;
     width: 100%;
