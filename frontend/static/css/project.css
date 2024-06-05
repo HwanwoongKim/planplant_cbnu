@@ -127,22 +127,23 @@ footer p {
     margin-top: 10px;
 }
 
-/* 큰 화면 (데스크탑) */
-@media (min-width: 1024px) {
+@media (max-width: 600px) {
+    .section-line {
+        flex-direction: column;
+    }
+
     .section {
-        max-width: 45%;
+        margin: 10px 0;
     }
 }
 
-/* 중간 화면 (태블릿) */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .section {
-        max-width: 45%;
+/* 큰 화면 (데스크탑) 스타일 */
+@media (min-width: 601px) {
+    .section-line {
+        flex-direction: row;
     }
-}
 
-/* 작은 화면 (모바일) */
-@media (max-width: 767px) {
-    
-
+    .section {
+        max-width: calc(50% - 20px); /* 두 개의 버튼이 각 줄에서 절반씩 차지하도록 */
+    }
 }
