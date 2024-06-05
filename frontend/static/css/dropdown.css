@@ -60,6 +60,7 @@
 /* #Navigation ================================================== */
 
 .cd-header{
+    margin-top: 50px;
     position: relative;
     width: 100%;
     top: 8px;
